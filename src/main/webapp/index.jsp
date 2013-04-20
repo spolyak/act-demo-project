@@ -2,414 +2,268 @@
 
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Spring MVC and Hibernate Template</title>
+<meta charset="utf-8">
+<title>Spring MVC and Hibernate Template</title>
 
-  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
-  <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css">
+<link href="static/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="static/css/tree.css" rel="stylesheet">
+<link href="static/css/d3-graph.css" rel="stylesheet">
+<script type="text/javascript" src="static/js/d3.js"></script>
+<script type="text/javascript" src="static/js/d3.layout.js"></script>
+<style type="text/css">
+.node circle {
+	cursor: pointer;
+	fill: #fff;
+	stroke: steelblue;
+	stroke-width: 1.5px;
+}
 
-  <!--
-  IMPORTANT:
-  This is Heroku specific styling. Remove to customize.
-  -->
-  <link href="http://heroku.github.com/template-app-bootstrap/heroku.css" rel="stylesheet">
-  <style type="text/css">
-    .instructions {
-      display: none;
-    }
+.node text {
+	font-size: 11px;
+}
 
-    .instructions li {
-      margin-bottom: 10px;
-    }
-
-    .instructions h2 {
-      margin: 18px 0;
-    }
-
-    .instructions blockquote {
-      margin-top: 10px;
-    }
-
-    .screenshot {
-      margin-top: 10px;
-      display: block;
-    }
-
-    .screenshot a {
-      padding: 0;
-      line-height: 1;
-      display: inline-block;
-      text-decoration: none;
-    }
-
-    .screenshot img, .tool-choice img {
-      border: 1px solid #ddd;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      border-radius: 4px;
-      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-      -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-    }
-  </style>
-  <!-- /// -->
-  <script type="text/javascript">
-    <!--
-    function appname() {
-      return location.hostname.substring(0, location.hostname.indexOf("."));
-    }
-    // -->
-  </script>
+path.link {
+	fill: none;
+	stroke: #ccc;
+	stroke-width: 1.5px;
+}
+.standardDiv {
+    height: 600px;
+    float: left;
+    overflow: auto;
+    overflow-x:hidden;
+}
+</style>
 </head>
-
 <body>
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a href="/" class="brand">Spring MVC and Hibernate Template</a>
-      <!--
-      IMPORTANT:
-      This is Heroku specific markup. Remove to customize.
-      -->
-      <a href="/" class="brand" id="heroku">by <strong>heroku</strong></a>
-      <!-- /// -->
-    </div>
-  </div>
-</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="well">
+					<img src="static/img/logo-blue.png" /> Standards Editor, v.0.0.1
+				</div>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span3 well">
+				<div class="css-treeview">
+					<ul>
+						<li><input type="checkbox" id="item-0" /><label for="item-0">ACT
+								Core Standards</label>
+							<ul>
+								<li><input type="checkbox" id="item-0-0" /><label
+									for="item-0-0">ACT Core Math</label>
+									<ul>
+										<li><input type="checkbox" id="item-0-0-0" /><label
+											for="item-0-0-0">K</label>
+											<ul>
+												<li><a href="./">Counting to 20</a></li>
+												<li><a href="./">Write numbers to 10</a></li>
+											</ul></li>
+									</ul></li>
+								<li><input type="checkbox" id="item-0-1" /><label
+									for="item-0-1">ACT Core English</label>
+								<li><input type="checkbox" id="item-0-2"
+									disabled="disabled" /><label for="item-0-2">ACT Core
+										Writing</label>
+							</ul></li>
+						<li><input type="checkbox" id="item-1" checked="checked" /><label
+							for="item-1">CCSS</label>
+							<ul>
+								<li><input type="checkbox" id="item-1-0" /><label
+									for="item-1-0">CCSS - Math</label>
+									<ul>
+										<li><a href="./">K</a></li>
+										<li><a href="./">Grade 1</a></li>
+										<li><a href="./">Grade 2</a></li>
+									</ul></li>
+								<li><a href="./">Mapping 1</a></li>
+							</ul></li>
+						<li><input type="checkbox" id="item-2" /><label for="item-2">CCRS</label>
+							<ul>
+								<li><input type="checkbox" id="item-2-0" /><label
+									for="item-2-0">CCRS - Math</label>
+								<li><input type="checkbox" id="item-2-1" /><label
+									for="item-2-1">CCRS - Science</label>
+							</ul></li>
+					</ul>
+				</div>
 
-<div class="container" id="getting-started">
-<div class="row">
-<div class="span8 offset2">
-<h1 class="alert alert-success">Your app is ready!</h1>
+			</div>
+			<div class="span9" style="overflow-x:scroll;overflow-y:scroll;width:800px;height:600px">
+				<!--Body content-->
+				<div id="body" class="width:5000px;height:5000px">
+				</div>
+				<script type="text/javascript">
+					var m = [ 20, 120, 20, 120 ], w = 5000 - m[1] - m[3], h = 800
+							- m[0] - m[2], i = 0, root;
 
-<div class="page-header">
-  <h1>Get started with your Spring MVC and Hibernate Application</h1>
-</div>
+					var tree = d3.layout.tree().size([ h, w ]);
 
-<div style="margin-bottom: 20px">
-  This is a template for a web application that uses Spring MVC and Hibernate. The sample code is a simple CRUD page
-  that manipulates records for a single model object. To try it out go to the <a href="/people/">people page</a>. Then
-  use Eclipse or the Command Line to deploy some changes.
-</div>
+					var diagonal = d3.svg.diagonal().projection(function(d) {
+						return [ d.y, d.x ];
+					});
 
-<ul id="tab" class="nav nav-tabs">
-  <li class="active"><a href="#eclipse-instructions" data-toggle="tab">Use Eclipse 3.7</a></li>
-  <li><a href="#cli-instructions" data-toggle="tab">Use Command Line</a></li>
-</ul>
+					var vis = d3.select("#body").append("svg:svg").attr(
+							"width", w + m[1] + m[3]).attr("height",
+							h + m[0] + m[2]).append("svg:g").attr("transform",
+							"translate(" + m[3] + "," + m[0] + ")");
 
-<div class="tab-content">
+					d3.json("static/flare.json", function(json) {
+						root = json;
+						root.x0 = h / 2;
+						root.y0 = 0;
 
+						function toggleAll(d) {
+							if (d.children) {
+								d.children.forEach(toggleAll);
+								toggle(d);
+							}
+						}
 
-<div id="eclipse-instructions" class="instructions tab-pane active">
-  <a name="using-eclipse"></a>
+						// Initialize the display to show a few nodes.
+						root.children.forEach(toggleAll);
+						//toggle(root.children[1]);
+						//toggle(root.children[1].children[2]);
+						//toggle(root.children[9]);
+						//toggle(root.children[9].children[0]);
 
-  <div class="alert alert-warn">If you already created this app from the Heroku Eclipse Plugin, proceed to <a
-      href="#step3">Step 3</a>.
-    The following steps depends on the Heroku Eclipse plugin. If you do not have the Heroku Eclipse plugin installed and
-    configured,
-    follow a <a href="https://devcenter.heroku.com/articles/getting-started-with-heroku-eclipse#installation-and-setup"
-                target="_blank">step-by-step guide</a>
-    on Dev Center to install the plugin and
-    configure the plugin in Eclipse.
-  </div>
+						update(root);
+					});
 
-  <h2>Step 1.Configure Heroku Eclipse preferences</h2>
-  <ol>
-    <li>Open <code>Eclipse</code><i class="icon-chevron-right"></i><code>Preferences</code></li>
-    <li>Select <code>Heroku</code></li>
-    <li>Enter your <code>Email</code> and <code>Password</code></li>
-    <li>Click <code>Login</code>. If your login was successful, your Heroku API key would be populated in the
-      <code>API Key</code> field.<br/>
+					function update(source) {
+						var duration = d3.event && d3.event.altKey ? 5000 : 500;
 
-      <div class="modal hide" id="apiPreferences">
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+						// Compute the new tree layout.
+						var nodes = tree.nodes(root).reverse();
 
-          <h3>Setup API Key</h3>
-        </div>
-        <div class="modal-body">
-          <img src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/heroku_preferences.png'
-               alt="setup api key"/>
-        </div>
-      </div>
-                    <span class="screenshot">
-                      <a href="#apiPreferences" data-toggle="modal">
-                        <img
-                            src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/heroku_preferences.png'
-                            alt="setup api key" width="100">
-                        <i class="icon-zoom-in"></i>
-                      </a>
-                    </span>
-    </li>
-    <li>In the SSH Key section, click <code>Generate</code> if you need to generate a new key.
-      If you have previously generated and saved a SSH key is automatically loaded from the default location. If it is
-      not
-      in the default location, click <code>Load SSH Key</code><br/>
-    </li>
-    <li>Click on <code>Add</code> to add your SSH Key to Heroku
-      <div class="modal hide" id="sshkeyadd">
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+						// Normalize for fixed-depth.
+						nodes.forEach(function(d) {
+							d.y = d.depth * 180;
+						});
 
-          <h3>Add SSH Key to Heroku</h3>
-        </div>
-        <div class="modal-body">
-          <img src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/heroku_ssh_add.png'
-               alt="Add SSH Key to Heroku"/>
-        </div>
-      </div>
-	                    <span class="screenshot">
-	                      <a href="#sshkeyadd" data-toggle="modal">
-                          <img
-                              src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/heroku_ssh_add.png'
-                              alt="Add SSH Key to Heroku" width="100"/>
-                          <i class="icon-zoom-in"></i>
-                        </a>
-	                    </span>
-    </li>
-  </ol>
+						// Update the nodes…
+						var node = vis.selectAll("g.node").data(nodes,
+								function(d) {
+									return d.id || (d.id = ++i);
+								});
 
-  <h2>Step 2. Importing this App</h2>
-  <ol>
-    <li>Open <code>File</code><i class="icon-chevron-right"></i><code>Import</code> and expand the Heroku section
-      <div class="modal hide" id="importAppSelect">
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+						// Enter any new nodes at the parent's previous position.
+						var nodeEnter = node.enter().append("svg:g").attr(
+								"class", "node").attr(
+								"transform",
+								function(d) {
+									return "translate(" + source.y0 + ","
+											+ source.x0 + ")";
+								}).on("click", function(d) {
+							toggle(d);
+							update(d);
+						});
 
-          <h3>Import App</h3>
-        </div>
-        <div class="modal-body">
-          <img src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/import_app_1.png'
-               alt="Import App"/>
-        </div>
-      </div>
-	                    <span class="screenshot">
-	                      <a href="#importAppSelect" data-toggle="modal">
-                          <img
-                              src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/import_app_1.png'
-                              alt="Import App" width="100"/>
-                          <i class="icon-zoom-in"></i>
-                        </a>
-	                    </span>
+						nodeEnter.append("svg:circle").attr("r", 1e-6).style(
+								"fill",
+								function(d) {
+									return d._children ? "lightsteelblue"
+											: "#fff";
+								});
 
-    </li>
-    <li>Select <code>Existing Heroku Application</code><i class="icon-chevron-right"></i><code>Next</code></li>
-    <li>Select <code>
-      <script>document.write(appname());</script>
-    </code> and click <code>Next</code>
+						nodeEnter.append("svg:text").attr("x", function(d) {
+							return d.children || d._children ? -10 : 10;
+						}).attr("dy", ".35em").attr("text-anchor", function(d) {
+							return d.children || d._children ? "end" : "start";
+						}).text(function(d) {
+							return d.name;
+						}).style("fill-opacity", 1e-6);
 
-      <div class="modal hide" id="importApp2">
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+						// Transition nodes to their new position.
+						var nodeUpdate = node.transition().duration(duration)
+								.attr(
+										"transform",
+										function(d) {
+											return "translate(" + d.y + ","
+													+ d.x + ")";
+										});
 
-          <h3>Select App to import</h3>
-        </div>
-        <div class="modal-body">
-          <img src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/import_app_2.png'
-               alt="Create app from template"/>
-        </div>
-      </div>
-	                    <span class="screenshot">
-	                      <a href="#importApp2" data-toggle="modal">
-                          <img
-                              src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/import_app_2.png'
-                              alt="Create app from template" width="100"/>
-                          <i class="icon-zoom-in"></i>
-                        </a>
-	                    </span>
-    </li>
-    <li>Choose <code>Auto detected project</code>
+						nodeUpdate.select("circle").attr("r", 4.5).style(
+								"fill",
+								function(d) {
+									return d._children ? "lightsteelblue"
+											: "#fff";
+								});
 
-      <div class="modal hide" id="importApp3">
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+						nodeUpdate.select("text").style("fill-opacity", 1);
 
-          <h3>Project Type selection</h3>
-        </div>
-        <div class="modal-body">
-          <img src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/import_app_3.png'
-               alt="Project Type selection"/>
-        </div>
-      </div>
-	                    <span class="screenshot">
-	                      <a href="#importApp3" data-toggle="modal">
-                          <img
-                              src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/import_app_3.png'
-                              alt="Project Type selection" width="100"/>
-                          <i class="icon-zoom-in"></i>
-                        </a>
-	                    </span>
-    </li>
-    <li>Click <code>Finish</code> to complete the import. The plugin will use <a href="http://www.eclipse.org/egit/">eGit</a>
-      and clone the source code repository to a local Git repository.
-      <div class="modal hide" id="importApp4">
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+						// Transition exiting nodes to the parent's new position.
+						var nodeExit = node.exit().transition().duration(
+								duration).attr(
+								"transform",
+								function(d) {
+									return "translate(" + source.y + ","
+											+ source.x + ")";
+								}).remove();
 
-          <h3>Local Project and Git Repository</h3>
-        </div>
-        <div class="modal-body">
-          <img src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/create_app_template_4.png'
-               alt="Local Project and Git Repository"/>
-        </div>
-      </div>
-	                    <span class="screenshot">
-	                      <a href="#importApp4" data-toggle="modal">
-                          <img
-                              src='https://template-app-instructions-screenshots.s3.amazonaws.com/eclipse/create_app_template_4.png'
-                              alt="Local Project and Git Repository" width="100"/>
-                          <i class="icon-zoom-in"></i>
-                        </a>
-	                    </span>
-    </li>
-  </ol>
-  <a name="step3" id="step3"></a>
+						nodeExit.select("circle").attr("r", 1e-6);
 
-  <h2>Step 3. Makes some changes to the app</h2>
-  <ol>
-    <li>Open <code>PersonServiceImpl.java</code></li>
-    <li>Query the people in alphabetical order by replacing line 29 with the following two lines:
-                <pre class="once language-java">
-Root&lt;Person&gt; from = c.from(Person.class);
-c.orderBy(em.getCriteriaBuilder().asc(from.get("lastName")));
-                </pre>
-    </li>
-  </ol>
+						nodeExit.select("text").style("fill-opacity", 1e-6);
 
-  <h2>Step 4. Deploy to Heroku</h2>
-  <ol>
-    <li>Right-click the project root and choose <code>Team</code> <i class="icon-chevron-right"></i> <code>Commit</code>
-    </li>
-    <li>Enter a commit message and click <code>Commit</code>
+						// Update the links…
+						var link = vis.selectAll("path.link").data(
+								tree.links(nodes), function(d) {
+									return d.target.id;
+								});
 
-      <div class="modal hide" id="commitChanges">
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+						// Enter any new links at the parent's previous position.
+						link.enter().insert("svg:path", "g").attr("class",
+								"link").attr("d", function(d) {
+							var o = {
+								x : source.x0,
+								y : source.y0
+							};
+							return diagonal({
+								source : o,
+								target : o
+							});
+						}).transition().duration(duration).attr("d", diagonal);
 
-          <h3>Commit Changes</h3>
-        </div>
-        <div class="modal-body">
-          <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/6-5-commit.png"
-               alt="Commit Changes"/>
-        </div>
-      </div>
-                <span class="screenshot">
-                  <a href="#commitChanges" data-toggle="modal">
-                    <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/6-5-commit.png"
-                         alt="Commit Changes" width="100"/>
-                    <i class="icon-zoom-in"></i>
-                  </a>
-                </span>
-    </li>
-    <li>Right-click the project root and choose <code>Team</code> <i class="icon-chevron-right"></i> <code>Push to
-      Upstream</code></li>
-    <li>Review the push results. At the bottom, a "... deployed to Heroku" message will appear.
-      <div class="modal hide" id="pushResults">
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>
+						// Transition links to their new position.
+						link.transition().duration(duration)
+								.attr("d", diagonal);
 
-          <h3>Push Results</h3>
-        </div>
-        <div class="modal-body">
-          <img src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/6-8-push-result.png"
-               alt="Push Results"/>
-        </div>
-      </div>
-                <span class="screenshot">
-                  <a href="#pushResults" data-toggle="modal">
-                    <img
-                        src="https://s3.amazonaws.com/template-app-instructions-screenshots/eclipse/6-8-push-result.png"
-                        alt="Push Results" width="100"/>
-                    <i class="icon-zoom-in"></i>
-                  </a>
-                </span>
-    </li>
-  </ol>
+						// Transition exiting nodes to the parent's new position.
+						link.exit().transition().duration(duration).attr("d",
+								function(d) {
+									var o = {
+										x : source.x,
+										y : source.y
+									};
+									return diagonal({
+										source : o,
+										target : o
+									});
+								}).remove();
 
-  <div class="hero-unit">
-    <h1>Done!</h1>
+						// Stash the old positions for transition.
+						nodes.forEach(function(d) {
+							d.x0 = d.x;
+							d.y0 = d.y;
+						});
+					}
 
-    <p>You've just cloned, modified, and deployed a brand new app.</p>
-    <a href="/people/" class="btn btn-primary btn-large">See your changes</a>
-
-    <p style="margin-top: 20px">Learn more at the
-      <a href="http://devcenter.heroku.com/categories/java">Heroku Dev Center</a></p>
-  </div>
-</div>
-
-
-<div id="cli-instructions" class="instructions tab-pane">
-  <a name="using-cli"></a>
-
-  <h2>Step 1. Setup your environment</h2>
-  <ol>
-    <li>Install the <a href="http://toolbelt.heroku.com">Heroku Toolbelt</a>.</li>
-    <li>Install <a href="http://maven.apache.org/download.html">Maven</a>.</li>
-  </ol>
-
-  <h2>Step 2. Login to Heroku</h2>
-  <code>heroku login</code>
-  <blockquote>
-    Be sure to create, or associate an SSH key with your account.
-  </blockquote>
-            <pre>
-$ heroku login
-Enter your Heroku credentials.
-Email: naaman@heroku.com
-Password:
-Could not find an existing public key.
-Would you like to generate one? [Yn] Y
-Generating new SSH public key.
-Uploading SSH public key /Users/Administrator/.ssh/id_rsa.pub
-Authentication successful.</pre>
-
-  <h2>Step 3. Clone the App</h2>
-  <code>git clone -o heroku git@heroku.com:<script>document.write(appname())</script>.git</code>
-
-  <h2>Step 4. Makes some changes to the app</h2>
-  <ol>
-    <li>Open <code>src/main/java/com/example/PersonServiceImpl.java in your favorite editor</code></li>
-    <li>Query the people in alphabetical order by replacing line 29 with the following two lines:
-                <pre class="once language-java">
-Root&lt;Person&gt; from = c.from(Person.class);
-c.orderBy(em.getCriteriaBuilder().asc(from.get("lastName")));
-                </pre>
-    </li>
-  </ol>
-
-  <h2>Step 5. Make sure the app still compiles</h2>
-  <code>mvn clean package</code>
-
-  <h2>Step 6. Deploy your changes</h2>
-  <ol>
-    <li><code>git commit -am "New changes to deploy"</code></li>
-    <li><code>git push heroku master</code></li>
-  </ol>
-
-  <div class="hero-unit">
-    <h1>Done!</h1>
-
-    <p>You've just cloned, modified, and deployed a brand new app.</p>
-    <a href="/people/" class="btn btn-primary btn-large">See your changes</a>
-
-    <p style="margin-top: 20px">Learn more at the
-      <a href="http://devcenter.heroku.com/categories/java">Heroku Dev Center</a></p>
-  </div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- end tab content -->
-</div>
-
-
-<script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+					// Toggle children.
+					function toggle(d) {
+						if (d.children) {
+							d._children = d.children;
+							d.children = null;
+						} else {
+							d.children = d._children;
+							d._children = null;
+						}
+					}
+				</script>
+			</div>
+		</div>
+	</div>
 </body>
-</html>
