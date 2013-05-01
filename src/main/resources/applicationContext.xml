@@ -13,9 +13,12 @@
                            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
                            http://www.springframework.org/schema/data/neo4j http://www.springframework.org/schema/data/neo4j/spring-neo4j-2.0.xsd">
 
-    <context:annotation-config />
+   <context:annotation-config />
+    <context:spring-configured />
     <context:component-scan base-package="com.example" />
-    
+
+    <neo4j:repositories base-package="com.example.service"/>
+
     <mvc:annotation-driven/>
 
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -26,18 +29,19 @@
 
     <tx:annotation-driven />
 
-   <beans profile="default">
+    <beans profile="default">
         <neo4j:config storeDirectory="target/neo4j-db"/>
     </beans>
- 
+
     <beans profile="prod">
         <bean class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase" id="graphDatabaseService">
             <constructor-arg index="0" value="#{systemEnvironment['NEO4J_REST_URL']}"/>
             <constructor-arg index="1" value="#{systemEnvironment['NEO4J_LOGIN']}"/>
             <constructor-arg index="2" value="#{systemEnvironment['NEO4J_PASSWORD']}"/>
         </bean>
- 
+        
         <neo4j:config graphDatabaseService="graphDatabaseService"/>
     </beans>
+
 
 </beans>
