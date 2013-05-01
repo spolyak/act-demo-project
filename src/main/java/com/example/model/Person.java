@@ -1,14 +1,12 @@
 package com.example.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.springframework.data.neo4j.annotation.GraphId;
+import org.springframework.data.neo4j.annotation.NodeEntity;
 
-@Entity
+@NodeEntity
 public class Person {
 
-    @Id
-    @GeneratedValue
+	@GraphId
     private Integer id;
 
     private String firstName;
