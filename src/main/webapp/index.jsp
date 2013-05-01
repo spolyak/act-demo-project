@@ -11,6 +11,9 @@
 <link href="static/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="static/css/tree.css" rel="stylesheet">
 <link href="static/css/d3-graph.css" rel="stylesheet">
+<link rel="stylesheet" href="static/css/jquery-ui.css" />
+<script type="text/javascript" src="static/js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="static/js/jquery-ui.js"></script>
 <script type="text/javascript" src="static/js/d3.js"></script>
 <script type="text/javascript" src="static/js/d3.layout.js"></script>
 <style type="text/css">
@@ -25,18 +28,76 @@
 	font-size: 11px;
 }
 
+.noborderd {
+-webkit-border-radius: 0px;
+-moz-border-radius: 0px;
+-o-border-radius: 0px;
+border-radius: 0px;
+border: 0px;
+background-color:transparent;
+}
+
+a[data-selected="true"] {
+	color: green;
+}
+
 path.link {
 	fill: none;
 	stroke: #ccc;
 	stroke-width: 1.5px;
 }
+
 .standardDiv {
-    height: 600px;
-    float: left;
-    overflow: auto;
-    overflow-x:hidden;
+	height: 600px;
+	float: left;
+	overflow: auto;
+	overflow-x: hidden;
 }
 </style>
+<script>
+  $(function() {
+    $( "#slider-range-max1" ).slider({
+      range: "max",
+      min: 1,
+      max: 10,
+      value: 3,
+      slide: function( event, ui ) {
+        $( "#amount1" ).val( ui.value );
+      }
+    });
+    $( "#amount1" ).val( $( "#slider-range-max1" ).slider( "value" ) );
+    $( "#slider-range-max2" ).slider({
+        range: "max",
+        min: 1,
+        max: 10,
+        value: 7,
+        slide: function( event, ui ) {
+          $( "#amount2" ).val( ui.value );
+        }
+      });
+      $( "#amount2" ).val( $( "#slider-range-max2" ).slider( "value" ) );
+      $( "#slider-range-max3" ).slider({
+          range: "max",
+          min: 1,
+          max: 10,
+          value: 5,
+          slide: function( event, ui ) {
+            $( "#amount3" ).val( ui.value );
+          }
+        });
+        $( "#amount3" ).val( $( "#slider-range-max3" ).slider( "value" ) );
+        $( "#slider-range-max4" ).slider({
+            range: "max",
+            min: 1,
+            max: 10,
+            value: 9,
+            slide: function( event, ui ) {
+              $( "#amount4" ).val( ui.value );
+            }
+          });
+          $( "#amount4" ).val( $( "#slider-range-max4" ).slider( "value" ) );
+  });
+  </script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -48,39 +109,21 @@ path.link {
 			</div>
 		</div>
 		<div class="row-fluid">
-			<div class="span3 well">
-				<div class="css-treeview">
+			<div class="span3">
+
+				<div class="css-treeview well">
 					<ul>
-						<li><input type="checkbox" id="item-0" /><label for="item-0">ACT
-								Core Standards</label>
+						<li><input type="checkbox" id="item-0" checked="checked" /><label
+							for="item-0">ACT Core Standards</label>
 							<ul>
-								<li><input type="checkbox" id="item-0-0" /><label
-									for="item-0-0">ACT Core Math</label>
-									<ul>
-										<li><input type="checkbox" id="item-0-0-0" /><label
-											for="item-0-0-0">K</label>
-											<ul>
-												<li><a href="./">Counting to 20</a></li>
-												<li><a href="./">Write numbers to 10</a></li>
-											</ul></li>
-									</ul></li>
-								<li><input type="checkbox" id="item-0-1" /><label
-									for="item-0-1">ACT Core English</label>
-								<li><input type="checkbox" id="item-0-2"
-									disabled="disabled" /><label for="item-0-2">ACT Core
-										Writing</label>
+								<li><a href="." data-selected="true">ACT Core Math</a></li>
+								<li><a href=".">ACT Core ELA</a></li>
+								<li><a href=".">ACT Core Writing</a>
 							</ul></li>
-						<li><input type="checkbox" id="item-1" checked="checked" /><label
-							for="item-1">CCSS</label>
+						<li><input type="checkbox" id="item-1" /><label for="item-1">CCSS</label>
 							<ul>
 								<li><input type="checkbox" id="item-1-0" /><label
-									for="item-1-0">CCSS - Math</label>
-									<ul>
-										<li><a href="./">K</a></li>
-										<li><a href="./">Grade 1</a></li>
-										<li><a href="./">Grade 2</a></li>
-									</ul></li>
-								<li><a href="./">Mapping 1</a></li>
+									for="item-1-0">CCSS - Math</label></li>
 							</ul></li>
 						<li><input type="checkbox" id="item-2" /><label for="item-2">CCRS</label>
 							<ul>
@@ -91,12 +134,51 @@ path.link {
 							</ul></li>
 					</ul>
 				</div>
+				<div class="well pull-left">
+					<form class="form-search">
+						<input type="text" class="input-medium search-query">
+						<button type="submit" class="btn">Search</button>
+					</form>
+					<small> <a href="./">ACT Core Math</a> | <a href="./">Algebra</a>
+						| <a href="./">Pre Algebra</a> | <a data-selected="true" href="./">Estimate
+							Sums</a>
+					</small>
+					<div class="row-fluid">
+						<strong>Skill:</strong> Estimate Sums
+					</div>
+					<div class="row-fluid">
+						<div class="span6">
+							<strong>Description:</strong>
+							<textarea rows="9" class="input-medium">Some text that makes sense to the right people. As elaborate or brief as deemed necessary. May be something to lift into materials automatically...</textarea>
+						</div>
+						<div class="span6">
+							<strong>Characteristics:</strong>
+							<p>
+								Complexity: <input class="input-mini noborderd" id="amount1" ></input>
+							</p>
+							<div id="slider-range-max1"></div>
+							<p>
+								Rigor: <input class="input-mini noborderd" id="amount2" ></input>
+							</p>
+							<div id="slider-range-max2"></div>
+							<p>
+								Relevance: <input class="input-mini noborderd" id="amount3" ></input>
+							</p>
+							<div id="slider-range-max3"></div>
+							<p>
+								Credibility: <input class="input-mini noborderd" id="amount4" ></input>
+							</p>
+							<div id="slider-range-max4"></div>
+						</div>
+					</div>
+				</div>
 
 			</div>
-			<div class="span9" style="overflow-x:scroll;overflow-y:scroll;width:800px;height:600px">
+
+			<div class="span7 well"
+				style="overflow-x: scroll; overflow-y: scroll; width: 800px; height: 600px">
 				<!--Body content-->
-				<div id="body" class="width:5000px;height:5000px">
-				</div>
+				<div id="body" class="width:5000px;height:5000px"></div>
 				<script type="text/javascript">
 					var m = [ 20, 120, 20, 120 ], w = 5000 - m[1] - m[3], h = 800
 							- m[0] - m[2], i = 0, root;
@@ -126,8 +208,8 @@ path.link {
 
 						// Initialize the display to show a few nodes.
 						root.children.forEach(toggleAll);
-						//toggle(root.children[1]);
-						//toggle(root.children[1].children[2]);
+						toggle(root.children[1]);
+						toggle(root.children[1].children[2]);
 						//toggle(root.children[9]);
 						//toggle(root.children[9].children[0]);
 
@@ -263,6 +345,14 @@ path.link {
 						}
 					}
 				</script>
+			</div>
+			<div class="span2 well">
+				<strong>View Options</strong><br /> <input type="checkbox"
+					id="citations" checked="checked" /> <small>citations</small> <br />
+				<input type="checkbox" id="hc" /> <small>highlight current</small>
+				<br /> <input type="checkbox" checked="checked" id="bm" /> <small>benchmarks</small>
+				<br /> <input type="checkbox" id="sd" /> <small>strands</small>
+
 			</div>
 		</div>
 	</div>

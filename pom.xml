@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
     <artifactId>spring-hibernate-template</artifactId>
@@ -68,13 +69,14 @@
     <artifactId>hibernate-validator</artifactId>
     <version>4.2.0.Final</version>
 </dependency>
-          
+           
         <dependency>
             <groupId>com.github.jsimone</groupId>
             <artifactId>webapp-runner</artifactId>
             <version>7.0.34.0</version>
             <scope>provided</scope>
         </dependency>
+        
         
     </dependencies>
 
@@ -83,8 +85,8 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
             <plugin>

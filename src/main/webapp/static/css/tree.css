@@ -52,7 +52,7 @@
     cursor: default;
     opacity: .6;
 }
- 
+
 .css-treeview input:checked:not(:disabled) ~ ul
 {
     display: block;
