@@ -9,14 +9,14 @@
 			<a class="brand" href="http://www.act.org">ACT</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li><a href="${pageContext.request.contextPath}">Home</a></li>
-					<li><a href="${pageContext.request.contextPath}/tools/edit">Manage</a></li>
-					<li><a href="${pageContext.request.contextPath}/tools/view">View</a></li>
+					<li><a href="${empty pageContext.request.contextPath ? '/' : pageContext.request.contextPath}">Home</a></li>
+					<li><a href="${empty pageContext.request.contextPath ? '/' : pageContext.request.contextPath}/tools/edit">Manage</a></li>
+					<li><a href="${empty pageContext.request.contextPath ? '/' : pageContext.request.contextPath}/tools/view">View</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Tools<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="${pageContext.request.contextPath}/tools/import">Import</a></li>
-							<li><a href="${pageContext.request.contextPath}/tools/export">Export</a></li>
+							<li><a href="${empty pageContext.request.contextPath ? '/' : pageContext.request.contextPath}/tools/import">Import</a></li>
+							<li><a href="${empty pageContext.request.contextPath ? '/' : pageContext.request.contextPath}/tools/export">Export</a></li>
 						</ul></li>
 				</ul>
 			</div>
