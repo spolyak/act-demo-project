@@ -10,7 +10,7 @@
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li><a href="${empty pageContext.request.contextPath ? '/' : pageContext.request.contextPath}">Home</a></li>
-					<li><a href="${empty pageContext.request.contextPath ? '/' : pageContext.request.contextPath}/tools/edit">Manage</a></li>
+					<li><a href="/tools/edit">Manage</a></li>
 					<li><a href="${empty pageContext.request.contextPath ? '/' : pageContext.request.contextPath}/tools/view">View</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Tools<b class="caret"></b></a>
