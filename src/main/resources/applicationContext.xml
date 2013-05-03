@@ -15,9 +15,9 @@
 
    <context:annotation-config />
     <context:spring-configured />
-    <context:component-scan base-package="com.example" />
+    <context:component-scan base-package="org.act.abg" />
 
-    <neo4j:repositories base-package="com.example.service"/>
+    <neo4j:repositories base-package="org.act.abg.service"/>
 
     <mvc:annotation-driven/>
 
