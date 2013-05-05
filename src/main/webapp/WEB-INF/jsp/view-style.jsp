@@ -41,10 +41,10 @@ ul.standard {
 }
 
 ul.standard li {
-	list-style-image: url('static/img/doc.jpg');
+	list-style-image: url('../static/img/doc.jpg');
 }
 
 ul.standard1 li {
-	list-style-image: url('static/img/doc1.jpg');
+	list-style-image: url('../static/img/doc1.jpg');
 }
 </style>

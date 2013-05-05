@@ -11,6 +11,10 @@
 <%@include file="view-style.jsp"%>
 <script>
 	$(function() {
+		$('#infoTab a').click(function(e) {
+			e.preventDefault();
+			$(this).tab('show');
+		});
 		$("#slider-range-max1").slider({
 			range : "max",
 			min : 1,
@@ -93,114 +97,132 @@
 						</form>
 					</div>
 
-					<div class="well pull-left" style="height: 500px; overflow: scroll">
+					<div class="well pull-left">
+						<div class="tabbable">
+							<ul id="infoTab" class="nav nav-tabs">
+								<li class="active"><a href="#tab1" data-toggle="tab">Info
+								</a></li>
+								<li><a href="#tab2" data-toggle="tab">Reqs</a></li>
+								<li><a href="#tab3" data-toggle="tab">Prop</a></li>
+								<li><a href="#tab4" data-toggle="tab">Ref</a></li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane active" id="tab1">
+									<small> <a href="./">ACT Core Math</a> | <a href="./">Algebra</a>
+										| <a href="./">Pre Algebra</a> | <a data-selected="true"
+										href="./">Estimate Sums</a>
+									</small>
+									<div class="row-fluid">
+										<strong>Skill:</strong> Estimate Sums
+									</div>
+									<div class="row-fluid">
+										<div class="span6">
+											<strong>Description:</strong>
+											<textarea rows="9" class="input-small">Some text that makes sense to the right people. As elaborate or brief as deemed necessary. May be something to lift into materials automatically...</textarea>
+										</div>
+										<div class="span6">
+											<strong>Characteristics:</strong>
+											<p>
+												Comp: <input class="input-mini noborderd" id="amount1"></input>
+											</p>
+											<div id="slider-range-max1"></div>
+											<p>
+												Rigor: <input class="input-mini noborderd" id="amount2"></input>
+											</p>
+											<div id="slider-range-max2"></div>
+											<p>
+												Relev.: <input class="input-mini noborderd" id="amount3"></input>
+											</p>
+											<div id="slider-range-max3"></div>
+											<p>
+												Cred.: <input class="input-mini noborderd"
+													id="amount4"></input>
+											</p>
+											<div id="slider-range-max4"></div>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane" id="tab2">
+									<div class="row-fluid">
+										<div class="span5">
+											<strong>Pre-requisites:</strong>
+											<ul class="standard">
+												<li>Skill X, 22%</li>
+												<li>Skill Y, 39%</li>
+												<li>Skill Z, 26%</li>
+											</ul>
 
-						<small> <a href="./">ACT Core Math</a> | <a href="./">Algebra</a>
-							| <a href="./">Pre Algebra</a> | <a data-selected="true"
-							href="./">Estimate Sums</a>
-						</small>
-						<div class="row-fluid">
-							<strong>Skill:</strong> Estimate Sums
-						</div>
-						<div class="row-fluid">
-							<div class="span6">
-								<strong>Description:</strong>
-								<textarea rows="9" class="input-small">Some text that makes sense to the right people. As elaborate or brief as deemed necessary. May be something to lift into materials automatically...</textarea>
-							</div>
-							<div class="span6">
-								<strong>Characteristics:</strong>
-								<p>
-									Complexity: <input class="input-mini noborderd" id="amount1"></input>
-								</p>
-								<div id="slider-range-max1"></div>
-								<p>
-									Rigor: <input class="input-mini noborderd" id="amount2"></input>
-								</p>
-								<div id="slider-range-max2"></div>
-								<p>
-									Relevance: <input class="input-mini noborderd" id="amount3"></input>
-								</p>
-								<div id="slider-range-max3"></div>
-								<p>
-									Credibility: <input class="input-mini noborderd" id="amount4"></input>
-								</p>
-								<div id="slider-range-max4"></div>
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="span5">
-								<strong>Pre-requisites:</strong>
-								<ul class="standard">
-									<li>Skill X, 22%</li>
-									<li>Skill Y, 39%</li>
-									<li>Skill Z, 26%</li>
-								</ul>
+										</div>
+						               <div class="span1">
+						               </div>
+										<div class="span6">
+											<strong>Pre-requisites for:</strong>
+											<ul class="standard1">
+												<li>Skill AA, 84%</li>
+												<li>Skill AB, 15%</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane" id="tab3">
+									<div class="row-fluid">
+										<div class="span12">
+											<strong>Standards:</strong>
+											<ul class="standard1">
+												<li>Common Core: 3.4.2a</li>
+												<li>Another Standard: #.#.#</li>
+												<li>Another Standard: #.#.#</li>
+											</ul>
+										</div>
+									</div>
+									<div class="row-fluid">
+										<div class="span6">
+											<strong>Benchmarks:</strong>
+											<ul>
+												<li><span style="text-decoration: underline;">Exposure:</span>
+													G5</li>
+												<li><span style="text-decoration: underline;">50%:</span>
+													G7</li>
+												<li><span style="text-decoration: underline;">85%:</span>
+													G8</li>
+											</ul>
 
-							</div>
-							<div class="span2"></div>
-							<div class="span5">
-								<strong>Pre-requisite for:</strong>
-								<ul class="standard1">
-									<li>Skill AA, 84%</li>
-									<li>Skill AB, 15%</li>
-								</ul>
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="span12">
-								<strong>Standards:</strong>
-								<ul class="standard1">
-									<li>Common Core: 3.4.2a</li>
-									<li>Another Standard: #.#.#</li>
-									<li>Another Standard: #.#.#</li>
-								</ul>
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="span5">
-								<strong>Benchmarks:</strong>
-								<ul>
-									<li><span style="text-decoration: underline;">Exposure:</span>
-										G5</li>
-									<li><span style="text-decoration: underline;">50%:</span>
-										G7</li>
-									<li><span style="text-decoration: underline;">85%:</span>
-										G8</li>
-								</ul>
+										</div>
+										
+										<div class="span6">
+											<strong>Require Mastery:</strong>
+											<ul>
+												<li>H.S. Grad</li>
+												<li>Tech Tracks</li>
+												<li>Med. Tracks</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane" id="tab4">
+									<div class="row-fluid">
+										<div class="span6">
+											<strong>Tags:</strong>
+											<ul>
+												<li>Slope</li>
+												<li>Coordinate</li>
+												<li>Fraction</li>
+											</ul>
 
-							</div>
-							<div class="span2"></div>
-							<div class="span5">
-								<strong>Require Mastery:</strong>
-								<ul>
-									<li>H.S. Grad</li>
-									<li>Tech Tracks</li>
-									<li>Med. Tracks</li>
-								</ul>
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="span5">
-								<strong>Tags:</strong>
-								<ul>
-									<li>Slope</li>
-									<li>Coordinate</li>
-									<li>Fraction</li>
-								</ul>
-
-							</div>
-							<div class="span2"></div>
-							<div class="span5">
-								<strong>References:</strong>
-								<ul>
-									<li>Reference A</li>
-									<li>Reference B</li>
-									<li>Reference C</li>
-								</ul>
+										</div>
+										<div class="span6">
+											<strong>References:</strong>
+											<ul>
+												<li>Reference A</li>
+												<li>Reference B</li>
+												<li>Reference C</li>
+											</ul>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-
 				</div>
 				<div class="span9 well">
 					<div class="row-fluid">
@@ -208,8 +230,8 @@
 							<a class="brand" href="#">Options</a>
 							<ul class="nav">
 								<li class="active"><a href="#">Citations</a></li>
-								<li><a href="#">Highlight Current</a></li>								
-								<li class="active"><a href="#">Benchmarks</a></li>	
+								<li><a href="#">Highlight Current</a></li>
+								<li class="active"><a href="#">Benchmarks</a></li>
 								<li><a href="#">Strands</a></li>
 							</ul>
 						</div>
