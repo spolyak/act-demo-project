@@ -1,3 +1,3 @@
 <%
-response.sendRedirect(request.getContextPath() + "/tools/welcome");
+response.sendRedirect(request.getContextPath() + "/web/welcome");
 %>

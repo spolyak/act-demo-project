@@ -23,6 +23,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>spring</servlet-name>
-        <url-pattern>/tools/*</url-pattern>
+        <url-pattern>/web/*</url-pattern>
     </servlet-mapping>
 </web-app>

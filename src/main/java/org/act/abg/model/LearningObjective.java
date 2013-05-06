@@ -24,8 +24,26 @@ import org.springframework.data.neo4j.annotation.RelatedTo;
 public class LearningObjective {
 
 	@GraphId
-    private Long id;
+	private Long id;
 	
-	@RelatedTo(type="parent")
-	LearningObjective parentLearningObjective;
+	private String objective;
+
+	//@RelatedTo(type = "parent")
+	//LearningObjective parentLearningObjective;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getObjective() {
+		return objective;
+	}
+
+	public void setObjective(String objective) {
+		this.objective = objective;
+	}
 }
