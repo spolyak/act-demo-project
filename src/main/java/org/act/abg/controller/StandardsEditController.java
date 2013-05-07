@@ -1,7 +1,9 @@
 package org.act.abg.controller;
 
 import org.act.abg.model.LearningObjective;
+import org.act.abg.model.ParentObjective;
 import org.act.abg.service.StandardsService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,8 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.example.model.Person;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -32,12 +32,17 @@ public class StandardsEditController {
 		}
 		
 		map.put("standardsList", standardsService.findAll().iterator());
+		map.put("parentList", standardsService.findAll().iterator());
 		return "edit";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
     @Transactional
     public String addObjective(@ModelAttribute("objective") LearningObjective objective) {
+		if (StringUtils.isNotEmpty(objective.getParentLearningObjectiveString())) {
+		  LearningObjective parent = standardsService.findOne(Long.valueOf(objective.getParentLearningObjectiveString()));
+		  objective.setParent(parent);
+		}
 		standardsService.save(objective);
         return "redirect:/web/edit";
     }

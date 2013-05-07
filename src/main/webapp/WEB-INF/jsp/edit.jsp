@@ -22,7 +22,15 @@
 
 							<form:label path="objective">Objective</form:label>
 							<form:input path="objective" />
-							
+
+							<form:label path="objective">Parent Objective</form:label>
+							<form:select path="parentLearningObjectiveString">
+								<c:forEach items="${parentList}" var="lo">
+									<option value="${lo.id}"
+										label="${lo.objective}">
+								</c:forEach>
+							</form:select>
+
 							<input type="submit" value="Add Learning Objective" class="btn" />
 						</form:form>
 
@@ -39,8 +47,14 @@
 								<tbody>
 									<c:forEach items="${standardsList}" var="learningObjective">
 										<tr>
-											<td>${learningObjective.objective}</td>
-											<td><form action="delete/${learningObjective.id}" method="post">
+											<td>
+											<c:if test="${not empty learningObjective.parent}">
+											${learningObjective.parent.objective} : 
+											</c:if>
+											${learningObjective.objective}
+											</td>
+											<td><form action="delete/${learningObjective.id}"
+													method="post">
 													<input type="submit" class="btn btn-danger btn-mini"
 														value="Delete" />
 												</form></td>
