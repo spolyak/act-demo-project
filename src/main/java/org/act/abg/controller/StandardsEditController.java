@@ -1,7 +1,6 @@
 package org.act.abg.controller;
 
 import org.act.abg.model.LearningObjective;
-import org.act.abg.model.ParentObjective;
 import org.act.abg.service.StandardsService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Iterator;
 import java.util.Map;
 
 @Controller
@@ -25,11 +23,11 @@ public class StandardsEditController {
 	public String viewStandards(Map<String, Object> map) {
 		map.put("objective", new LearningObjective());
 		
-		Iterator<LearningObjective> i = standardsService.findAll().iterator();
-		while(i.hasNext()){
-			LearningObjective lo = i.next();
-			System.out.println(lo.getId());
-		}
+		//Iterator<LearningObjective> i = standardsService.findAll().iterator();
+		//while(i.hasNext()){
+		//	LearningObjective lo = i.next();
+		//	System.out.println(lo.getId());
+		//}
 		
 		map.put("standardsList", standardsService.findAll().iterator());
 		map.put("parentList", standardsService.findAll().iterator());

@@ -17,18 +17,18 @@
 						<div class="navbar">
 							<div class="navbar-inner">
 								<ul class="nav">
-									<li class="active"><a href="${baseu}/web/edit">Objectives</a></li>
-									<li><a href="${baseu}/web/editSkills">Skills</a></li>
+									<li><a href="${baseu}/web/edit">Objectives</a></li>
+									<li class="active"><a href="${baseu}/web/editSkills">Skills</a></li>
 								</ul>
 							</div>
 						</div>
-						<form:form method="post" action="add" commandName="objective"
+						<form:form method="post" action="addSkill" commandName="skill"
 							class="form-vertical">
 
-							<form:label path="objective">New Objective</form:label>
-							<form:input path="objective" />
+							<form:label path="skill">New Skill</form:label>
+							<form:input path="skill" />
 
-							<form:label path="objective">Parent</form:label>
+							<form:label path="skill">Parent</form:label>
 							<form:select path="parentLearningObjectiveString">
 								<option value="" />
 								<c:forEach items="${parentList}" var="lo">
@@ -36,26 +36,26 @@
 								</c:forEach>
 							</form:select>
 
-							<input type="submit" value="Add Objective" class="btn" />
+							<input type="submit" value="Add Skill" class="btn" />
 						</form:form>
 
 
-						<c:if test="${!empty standardsList}">
-							<h3>Objectives</h3>
+						<c:if test="${!empty skillsList}">
+							<h3>Skill</h3>
 							<table class="table table-bordered table-striped">
 								<thead>
 									<tr>
-										<th>Objective</th>
+										<th>Skill</th>
 										<th>&nbsp;</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${standardsList}" var="learningObjective">
+									<c:forEach items="${skillsList}" var="skill">
 										<tr>
-											<td><c:if test="${not empty learningObjective.parent}">
-											${learningObjective.parent.objective} : 
-											</c:if> ${learningObjective.objective}</td>
-											<td><form action="delete/${learningObjective.id}"
+											<td><c:if test="${not empty skill.parent}">
+											${skill.parent.objective} : 
+											</c:if> ${skill.skill}</td>
+											<td><form action="deleteSkill/${skill.id}"
 													method="post">
 													<input type="submit" class="btn btn-danger btn-mini"
 														value="Delete" />
