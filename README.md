@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Spring MVC and Hibernate template application 
 
@@ -13,3 +14,9 @@ Then run it with:
 
     $java -jar target/dependency/webapp-runner.jar target/*.war
 
+=======
+act-demo-project
+================
+
+Editing education data
+>>>>>>> b5c166fc7721c683eb97f428bd0807cbb9082126
