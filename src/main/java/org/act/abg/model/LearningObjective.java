@@ -1,8 +1,14 @@
 package org.act.abg.model;
 
+import java.util.Set;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.Fetch;
 import org.springframework.data.neo4j.annotation.GraphId;
+import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.annotation.RelatedTo;
 
 /**
  * From Ed-Fi 1.1
@@ -26,10 +32,21 @@ public class LearningObjective {
 	@GraphId
 	private Long id;
 	
+	@Indexed
 	private String objective;
 
+	//@Fetch
+	//private LearningObjective parent;
+	
 	@Fetch
+	@RelatedTo(direction = Direction.INCOMING, type = "CHILD")
 	private LearningObjective parent;
+
+    @Fetch
+	@RelatedTo(direction = Direction.OUTGOING, type = "CHILD")
+	private
+    Set<LearningObjective> children;
+    
 	
 	private String parentLearningObjectiveString;
 
@@ -45,6 +62,10 @@ public class LearningObjective {
 		return objective;
 	}
 
+	public String getName() {
+		return objective;
+	}
+	
 	public void setObjective(String objective) {
 		this.objective = objective;
 	}
@@ -58,12 +79,21 @@ public class LearningObjective {
 		this.parentLearningObjectiveString = parentLearningObjectiveString;
 	}
 
+	@JsonIgnore
 	public LearningObjective getParent() {
 		return parent;
 	}
 
 	public void setParent(LearningObjective parent) {
 		this.parent = parent;
+	}
+
+	public Set<LearningObjective> getChildren() {
+		return children;
+	}
+
+	public void setChildren(Set<LearningObjective> children) {
+		this.children = children;
 	}
 
 }

@@ -258,7 +258,7 @@
 												"translate(" + m[3] + ","
 														+ m[0] + ")");
 
-								d3.json("../static/flare.json", function(json) {
+								d3.json("../web/json/CCSS%20Math", function(json) {
 									root = json;
 									root.x0 = h / 2;
 									root.y0 = 0;
@@ -272,8 +272,8 @@
 
 									// Initialize the display to show a few nodes.
 									root.children.forEach(toggleAll);
-									toggle(root.children[1]);
-									toggle(root.children[1].children[2]);
+									//toggle(root.children[1]);
+									//toggle(root.children[1].children[2]);
 									//toggle(root.children[9]);
 									//toggle(root.children[9].children[0]);
 
