@@ -1,5 +1,6 @@
 package org.act.abg.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -27,7 +28,7 @@ import org.springframework.data.neo4j.annotation.RelatedTo;
  */
 
 @NodeEntity
-public class LearningObjective {
+public class LearningObjective implements GraphNode {
 
 	@GraphId
 	private Long id;
@@ -45,8 +46,12 @@ public class LearningObjective {
     @Fetch
 	@RelatedTo(direction = Direction.OUTGOING, type = "CHILD")
 	private
-    Set<LearningObjective> children;
+    Set<LearningObjective> childrenObjectives;
     
+    @Fetch
+   	@RelatedTo(direction = Direction.OUTGOING, type = "CHILD_SKILL")
+   	private
+    Set<Skill> childrenSkills;
 	
 	private String parentLearningObjectiveString;
 
@@ -62,6 +67,7 @@ public class LearningObjective {
 		return objective;
 	}
 
+	@Override
 	public String getName() {
 		return objective;
 	}
@@ -88,12 +94,30 @@ public class LearningObjective {
 		this.parent = parent;
 	}
 
-	public Set<LearningObjective> getChildren() {
+	@Override
+	public Set<GraphNode> getChildren() {
+		Set<GraphNode> children = new HashSet<GraphNode>();
+		children.addAll(childrenObjectives);
+		children.addAll(childrenSkills);
 		return children;
 	}
 
-	public void setChildren(Set<LearningObjective> children) {
-		this.children = children;
+	@JsonIgnore
+	public Set<Skill> getChildrenSkills() {
+		return childrenSkills;
+	}
+
+	public void setChildrenSkills(Set<Skill> childrenSkills) {
+		this.childrenSkills = childrenSkills;
+	}
+
+	@JsonIgnore
+	public Set<LearningObjective> getChildrenObjectives() {
+		return childrenObjectives;
+	}
+
+	public void setChildrenObjectives(Set<LearningObjective> childrenObjectives) {
+		this.childrenObjectives = childrenObjectives;
 	}
 
 }

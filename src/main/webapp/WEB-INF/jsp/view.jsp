@@ -272,6 +272,7 @@
 
 									// Initialize the display to show a few nodes.
 									root.children.forEach(toggleAll);
+									
 									//toggle(root.children[1]);
 									//toggle(root.children[1].children[2]);
 									//toggle(root.children[9]);
@@ -328,7 +329,8 @@
 											"x",
 											function(d) {
 												return d.children
-														|| d._children ? -10
+														|| d._children
+														 ? -10 
 														: 10;
 											}).attr("dy", ".35em").attr(
 											"text-anchor",
@@ -434,6 +436,7 @@
 										d.children = d._children;
 										d._children = null;
 									}
+									
 								}
 							</script>
 						</div>
