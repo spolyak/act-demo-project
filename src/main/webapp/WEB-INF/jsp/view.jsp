@@ -238,10 +238,10 @@
 						<div class="span12 well"
 							style="overflow-x: scroll; overflow-y: scroll; width: 800px; height: 400px">
 							<!--Body content-->
-							<div id="body" class="width:5000px;height:5000px"></div>
+							<div id="body" class="width:5000px;height:200px"></div>
 							<script type="text/javascript">
 								var m = [ 20, 120, 20, 120 ], w = 5000 - m[1]
-										- m[3], h = 800 - m[0] - m[2], i = 0, root;
+										- m[3], h = 100 - m[0] - m[2], i = 0, root;
 
 								var tree = d3.layout.tree().size([ h, w ]);
 

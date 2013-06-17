@@ -35,6 +35,9 @@
 									<option value="${lo.id}" label="${lo.objective}">
 								</c:forEach>
 							</form:select>
+							
+							<form:label path="skill">Description</form:label>
+							<form:textarea path="description" />
 
 							<input type="submit" value="Add Skill" class="btn" />
 						</form:form>

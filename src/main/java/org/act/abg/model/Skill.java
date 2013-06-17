@@ -17,6 +17,8 @@ public class Skill implements GraphNode {
 	private Long id;
 	
 	private String skill;
+	
+	private String description;
 
 	@Fetch
 	@RelatedTo(direction = Direction.INCOMING, type = "CHILD_SKILL")
@@ -66,6 +68,14 @@ public class Skill implements GraphNode {
 
 	public void setParent(LearningObjective parent) {
 		this.parent = parent;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }
